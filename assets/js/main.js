@@ -134,11 +134,34 @@ $(document).ready(function() {
     $('.mode-button').on('click', function(e) {
         e.preventDefault();
         currentMode = $(this).data('mode');
-        addSystemMessage(`已切换到${$(this).text()}方法`);
+        const modeName = $(this).text();
+        let promptMessage = `已切换到${modeName}方法`;
+        
+        // Add specific prompts for each mode
+        switch(currentMode) {
+            case 'general':
+                promptMessage += " - 标准对话模式";
+                break;
+            case 'creative':
+                promptMessage += " - 角色扮演模式";
+                break;
+            case 'technical':
+                promptMessage += " - 技术专家模式";
+                break;
+            case 'custom':
+                promptMessage += " - 自定义模式";
+                break;
+        }
+        
+        addSystemMessage(promptMessage);
     });
 
     // Handle send message
-    sendButton.on('click', sendMessage);
+    sendButton.on('click', function(e) {
+        e.preventDefault();
+        sendMessage();
+    });
+    
     userInput.on('keypress', function(e) {
         if (e.which === 13 && !e.shiftKey) {
             e.preventDefault();
