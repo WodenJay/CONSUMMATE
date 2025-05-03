@@ -2150,10 +2150,111 @@ table.alt tfoot {
 	border-top: 0;
 }
 
+/* Tabbed Table Styles */
+.tabbed-table {
+	margin: 3em 0;
+}
+
+.tabbed-table .tabs {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1.5em 0;
+	border-bottom: 1px solid #d2d7dc;
+}
+
+.tabbed-table .tabs li {
+	margin-right: 1em;
+	position: relative;
+}
+
+.tabbed-table .tabs li a {
+	display: block;
+	padding: 0.5em 1em;
+	color: #52575c;
+	text-decoration: none;
+	border-radius: 0.35em 0.35em 0 0;
+	transition: all 0.25s ease-in-out;
+	border: 1px solid transparent;
+	border-bottom: none;
+}
+
+.tabbed-table .tabs li.active a {
+	background: #f5f7fa;
+	color: #f35858;
+	border-color: #d2d7dc;
+	border-bottom-color: #f5f7fa;
+}
+
+.tabbed-table .tabs li a:hover {
+	color: #f35858;
+}
+
+.tabbed-table .tab-content {
+	position: relative;
+}
+
+.tabbed-table .tab-pane {
+	display: none;
+	animation: fadeIn 0.5s ease-out;
+}
+
+.tabbed-table .tab-pane.active {
+	display: block;
+}
+
+/* Animated Table Styles */
+.animated-table {
+	transform-origin: top center;
+	animation: tableIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animated-table {
+	position: relative;
+}
+
+.animated-table th:first-child,
+.animated-table td:first-child {
+	position: sticky;
+	left: 0;
+	background: #f5f7fa;
+	z-index: 2;
+	box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.animated-table thead th {
+	position: sticky;
+	top: 0;
+	z-index: 3;
+	background: #f5f7fa;
+}
+
+.table-wrapper {
+	overflow: visible;
+}
+
+@keyframes tableIn {
+	from { opacity: 0; transform: scale(0.95) translateY(20px); }
+	to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animated-table tbody tr {
+	transition: all 0.3s ease;
+}
+
+.animated-table tbody tr:hover {
+	transform: scale(1.02);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
 /* Table Styles */
 .table-wrapper {
 	margin-bottom: 2em;
 	overflow: hidden;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	border-radius: 0.35em;
+	background: #fff;
 }
 
 /* Tabs */

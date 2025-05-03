@@ -230,4 +230,55 @@ $(document).ready(function() {
         chatMessages.append(messageElement);
         chatMessages.scrollTop(chatMessages[0].scrollHeight);
     }
+
+    // Tabbed Table Functionality
+    function initTabbedTables() {
+        $('.tabbed-table').each(function() {
+            const $table = $(this);
+            
+            // Ensure only one active tab per table
+            $table.find('.tabs li a').on('click', function(e) {
+                e.preventDefault();
+                
+                const $this = $(this);
+                const tabId = $this.attr('href');
+                
+                // Update active tab
+                $this.closest('ul').find('li').removeClass('active');
+                $this.parent().addClass('active');
+                
+                // Hide all tab panes in this table
+                $table.find('.tab-pane').removeClass('active');
+                
+                // Show selected pane with GSAP animation
+                gsap.fromTo($(tabId), 
+                    { opacity: 0, y: 20 },
+                    { 
+                        opacity: 1, 
+                        y: 0,
+                        duration: 0.5,
+                        ease: "power2.out",
+                        onStart: function() {
+                            $(tabId).addClass('active');
+                        }
+                    }
+                );
+                
+                // Animate table rows
+                gsap.from($(tabId + ' tr'), {
+                    duration: 0.6,
+                    y: 10,
+                    opacity: 0,
+                    stagger: 0.1,
+                    ease: "back.out(1.7)"
+                });
+            });
+
+            // Initialize first tab
+            $table.find('.tabs li:first-child a').trigger('click');
+        });
+    }
+
+    // Initialize all tabbed tables
+    initTabbedTables();
 });
