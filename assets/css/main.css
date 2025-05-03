@@ -2092,16 +2092,84 @@ table tbody tr {
 	border-left: 0;
 	border-right: 0;
 	transition: all 0.3s ease;
+	position: relative;
 }
 
+/* 主阴影效果 */
+table tbody tr[rowspan] {
+	box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+	background-color: rgba(240, 240, 255, 0.1);
+}
+
+/* 相邻rowspan行的次级阴影 */
+table tbody tr:not([rowspan]) + tr[rowspan] {
+	box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+	background-color: rgba(255, 240, 240, 0.1);
+}
+
+/* 悬停效果增强 */
 table tbody tr:hover {
-	transform: scale(1.02);
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-	background-color: rgba(255, 255, 255, 0.9);
+	transform: scale(1.01) translateY(-2px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	background-color: rgba(255, 255, 255, 0.95);
+	z-index: 2;
 }
 
-table tbody tr:nth-child(2n + 1) {
+/* 单元格内边距调整 */
+table td {
+	padding: 0.75em;
+	transition: background-color 0.2s ease;
+}
+
+/* 标题行样式增强 */
+table th {
+	background-color: #f5f7fa;
+	padding: 0.75em;
+	position: sticky;
+	top: 0;
+	box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
+}
+
+/* 为rowspan行添加交替阴影效果 */
+table tbody tr[data-rowspan-group="1"] {
+	background-color: rgba(240, 240, 255, 0.3);
+	box-shadow: inset 0 0 10px rgba(200, 200, 255, 0.2);
+}
+
+table tbody tr[data-rowspan-group="2"] {
+	background-color: rgba(255, 240, 240, 0.3);
+	box-shadow: inset 0 0 10px rgba(255, 200, 200, 0.2);
+}
+
+/* 斑马条纹效果 */
+table tbody tr:nth-child(4n + 1),
+table tbody tr:nth-child(4n + 2) {
+	background-color: rgba(245, 247, 250, 0.5);
+}
+
+table tbody tr:nth-child(4n + 3),
+table tbody tr:nth-child(4n + 4) {
 	background-color: rgba(230, 235, 237, 0.25);
+}
+
+/* 增强悬停效果 */
+table tbody tr:hover {
+	transform: scale(1.01);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+	background-color: rgba(255, 255, 255, 0.95);
+	z-index: 1;
+	position: relative;
+}
+
+/* 为rowspan行添加交替阴影效果 */
+table tbody tr[data-rowspan-group="1"] {
+	background-color: rgba(240, 240, 255, 0.3);
+	box-shadow: inset 0 0 10px rgba(200, 200, 255, 0.2);
+}
+
+table tbody tr[data-rowspan-group="2"] {
+	background-color: rgba(255, 240, 240, 0.3);
+	box-shadow: inset 0 0 10px rgba(255, 200, 200, 0.2);
 }
 
 table td {

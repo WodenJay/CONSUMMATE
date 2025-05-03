@@ -30,13 +30,13 @@
 			</div>
 		</div>
 	</div>
-
+	<br />
 	<!-- Main Wrapper -->
 	<div id="main-wrapper">
 		<div class="container">
 			<!-- Tables -->
+			<h3 class="table-title">多语言攻击:gemma-29B > deepseek-chat > llama321B > gpt-4 > Llama32-90B > Llava-34B</h3>
 			<div class="table-wrapper">
-				<h3 class="table-title"><span class="highlight">多语言攻击</span></h3>
 				<table border="1">
 					<thead>
 						<tr>
@@ -167,61 +167,106 @@
 				</table>
 			</div>
 
-			<div class="table-wrapper">
-				<h3 class="table-title"><span class="highlight">视觉问答</span> 性能评估</h3>
-				<table>
-					<thead>
-						<tr>
-							<th>模型</th>
-							<th>准确率</th>
-							<th>召回率</th>
-							<th>响应时间</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>模型C</td>
-							<td>85.2%</td>
-							<td>0.83</td>
-							<td>150ms</td>
-						</tr>
-						<tr>
-							<td>模型D</td>
-							<td>78.9%</td>
-							<td>0.76</td>
-							<td>110ms</td>
-						</tr>
-					</tbody>
-				</table>
+			<h3 class="table-title">视觉问答</h3>
+			<div class="image-wrapper">
+				<a><img src="images/视觉问答评价结果.png" style="width: 800px; height: auto;" /></a>
 			</div>
+			<br />
 
+
+			<h3 class="table-title">文本问答</h3>
 			<div class="table-wrapper">
-				<h3 class="table-title"><span class="highlight">文本问答</span> 性能评估</h3>
-				<table>
+				<table border="1">
 					<thead>
 						<tr>
 							<th>模型</th>
-							<th>BLEU分数</th>
-							<th>ROUGE-L</th>
-							<th>响应时间</th>
+							<th>章节名</th>
+							<th>正确答案数</th>
+							<th>总问题数</th>
+							<th>准确率</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>模型E</td>
-							<td>0.45</td>
-							<td>0.52</td>
-							<td>200ms</td>
+							<td rowspan="3">gemma29b</td>
+							<td>Professional Knowledge</td>
+							<td>56</td>
+							<td>123</td>
+							<td>45.53%</td>
 						</tr>
 						<tr>
-							<td>模型F</td>
-							<td>0.38</td>
-							<td>0.44</td>
-							<td>180ms</td>
+							<td>Professional Practical Skills</td>
+							<td>11</td>
+							<td>59</td>
+							<td>18.64%</td>
+						</tr>
+						<tr>
+							<td>全局汇总</td>
+							<td>67</td>
+							<td>182</td>
+							<td>36.81%</td>
+						</tr>
+						<tr>
+							<td rowspan="3">llama32</td>
+							<td>Professional Knowledge</td>
+							<td>66</td>
+							<td>123</td>
+							<td>53.66%</td>
+						</tr>
+						<tr>
+							<td>Professional Practical Skills</td>
+							<td>24</td>
+							<td>59</td>
+							<td>40.68%</td>
+						</tr>
+						<tr>
+							<td>全局汇总</td>
+							<td>90</td>
+							<td>182</td>
+							<td>49.45%</td>
+						</tr>
+						<tr>
+							<td rowspan="3">llava34</td>
+							<td>Professional Knowledge</td>
+							<td>46</td>
+							<td>123</td>
+							<td>37.40%</td>
+						</tr>
+						<tr>
+							<td>Professional Practical Skills</td>
+							<td>17</td>
+							<td>59</td>
+							<td>28.81%</td>
+						</tr>
+						<tr>
+							<td>全局汇总</td>
+							<td>63</td>
+							<td>182</td>
+							<td>34.62%</td>
+						</tr>
+						<tr>
+							<td rowspan="3">gpt4</td>
+							<td>Professional Knowledge</td>
+							<td>73</td>
+							<td>123</td>
+							<td>59.35%</td>
+						</tr>
+						<tr>
+							<td>Professional Practical Skills</td>
+							<td>26</td>
+							<td>59</td>
+							<td>44.07%</td>
+						</tr>
+						<tr>
+							<td>全局汇总</td>
+							<td>99</td>
+							<td>182</td>
+							<td>54.40%</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<p>更多结果正在同步中</p>
 		</div>
 	</div>
 
