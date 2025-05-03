@@ -296,34 +296,6 @@
 	<script src="assets/js/gsap/gsap-core.js"></script>
 	<script src="assets/js/gsap/ScrollTrigger.js"></script>
 	<script src="assets/js/main.js"></script>
-	<script>
-		// 表格切换功能实现
-		function initTabbedTables() {
-			const tabs = document.querySelectorAll('.tabs li');
-			const tabPanes = document.querySelectorAll('.tab-pane');
-
-			tabs.forEach(tab => {
-				tab.addEventListener('click', function (e) {
-					e.preventDefault();
-
-					// 移除所有active类
-					tabs.forEach(t => t.classList.remove('active'));
-					tabPanes.forEach(p => p.classList.remove('active'));
-
-					// 添加active类到当前tab
-					this.classList.add('active');
-					const tabId = this.querySelector('a').getAttribute('href');
-					document.querySelector(tabId).classList.add('active');
-				});
-			});
-		}
-
-		// 确保表格切换功能在DOM加载完成后初始化
-		document.addEventListener('DOMContentLoaded', function () {
-			initTabbedTables();
-		});
-	</script>
-
 </body>
 
 </html>
