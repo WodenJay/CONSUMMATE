@@ -155,23 +155,7 @@ $(document).ready(function() {
             e.preventDefault();
             currentMode = $(this).data('mode');
             const modeName = $(this).text();
-            let promptMessage = `已切换到${modeName}方法`;
-            
-            // Add specific prompts for each mode
-            switch(currentMode) {
-                case 'general':
-                    promptMessage += " - 标准对话模式";
-                    break;
-                case 'creative':
-                    promptMessage += " - 角色扮演模式";
-                    break;
-                case 'technical':
-                    promptMessage += " - 技术专家模式";
-                    break;
-                case 'custom':
-                    promptMessage += " - 自定义模式";
-                    break;
-            }
+            let promptMessage = `已切换到${modeName}`;
             
             addSystemMessage(promptMessage);
         });
