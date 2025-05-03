@@ -2153,6 +2153,80 @@ table.alt tfoot {
 /* Table Styles */
 .table-wrapper {
 	margin-bottom: 2em;
+	overflow: hidden;
+}
+
+/* Tabs */
+.tabs {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0 0 2em 0;
+	border-bottom: 1px solid #d2d7dc;
+}
+
+.tabs li {
+	margin-right: 1em;
+	position: relative;
+}
+
+.tabs li a {
+	display: block;
+	padding: 0.5em 1em;
+	color: #52575c;
+	text-decoration: none;
+	border-radius: 0.35em 0.35em 0 0;
+	transition: all 0.25s ease-in-out;
+}
+
+.tabs li.active a {
+	background: #f5f7fa;
+	color: #f35858;
+	border: 1px solid #d2d7dc;
+	border-bottom-color: transparent;
+}
+
+.tabs li a:hover {
+	color: #f35858;
+}
+
+.tab-content {
+	position: relative;
+}
+
+.tab-pane {
+	display: none;
+	animation: fadeIn 0.5s ease-out;
+}
+
+.tab-pane.active {
+	display: block;
+}
+
+/* Table Animations */
+@keyframes fadeIn {
+	from { opacity: 0; transform: translateY(10px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+table {
+	transform-origin: top center;
+	animation: tableIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes tableIn {
+	from { opacity: 0; transform: scale(0.95) translateY(20px); }
+	to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+table tbody tr {
+	transition: all 0.3s ease;
+}
+
+table tbody tr:hover {
+	transform: scale(1.02);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 table {
@@ -2244,12 +2318,12 @@ table tr:hover {
 
 #header-wrapper {
 	position: relative;
-	padding: 4em 0 4em 0;
+	padding: 4em 0 2em 0;
 	background-image: url("images/header.svg");
 	background-image: url("images/overlay.png"), url("images/header.svg"), -moz-linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
 	background-image: url("images/overlay.png"), url("images/header.svg"), -webkit-linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
-	background-image: url("images/overlay.png"), url("images/header.svg"), -ms-linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
-	background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #ff99aa 15%, #fa8a9d 55%);
+	background-image: url("images/overlay.png"), url("images/header.svg"), -ms-linear-gradient(75deg, #fc91a3 15%, #e8ad93 55%);
+	background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #fc91a3 15%, #e8ad93 55%);
 }
 
 body #header-wrapper {
@@ -3375,7 +3449,7 @@ section {
 	border-radius: 4px;
 	padding: 0.8em 1.2em;
 	border-left: 4px solid #f0ad4e;
-	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	width: 90%;
 	max-width: 600px;
 	opacity: 0;
@@ -3416,7 +3490,7 @@ section {
 .chat-input button:hover {
 	background: #f56a6a;
 	transform: translateY(-1px);
-	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .chat-input button:active {
