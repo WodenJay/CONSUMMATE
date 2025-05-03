@@ -63,39 +63,62 @@
 gsap.registerPlugin(ScrollTrigger);
 
 function initAnimations() {
-    // 标题动画
-    gsap.from("#hero h2", {
-        duration: 1.5,
-        y: 50,
-        opacity: 0,
-        ease: "back.out(1.7)"
-    });
+    // 仅在元素存在时执行动画
+    document.addEventListener('DOMContentLoaded', () => {
+        // 标题动画（仅当元素存在时）
+        const heroTitle = document.querySelector('#hero h2');
+        if (heroTitle) {
+            gsap.from(heroTitle, {
+                duration: 1.5,
+                y: 50,
+                opacity: 0,
+                ease: "back.out(1.7)"
+            });
+        }
 
-    // 按钮动画
-    gsap.from(".button", {
-        scrollTrigger: {
-            trigger: ".button",
-            start: "top 80%"
-        },
-        duration: 0.8,
-        scale: 0.5,
-        opacity: 0,
-        ease: "elastic.out(1, 0.5)"
-    });
+        // 按钮动画（仅当元素存在时）
+        const buttons = document.querySelectorAll('.button');
+        if (buttons.length > 0) {
+            gsap.from(buttons, {
+                scrollTrigger: {
+                    trigger: ".button",
+                    start: "top 80%"
+                },
+                duration: 0.8,
+                scale: 0.5,
+                opacity: 0,
+                ease: "elastic.out(1, 0.5)"
+            });
+        }
 
-    // 内容区域视差效果
-    gsap.utils.toArray(".feature").forEach((section, i) => {
-        gsap.from(section, {
-            scrollTrigger: {
-                trigger: section,
-                start: "top 75%"
-            },
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            stagger: 0.1,
-            ease: "power1.out"
-        });
+        // 内容区域视差效果（仅当元素存在时）
+        const features = document.querySelectorAll('.feature');
+        if (features.length > 0) {
+            gsap.utils.toArray(features).forEach((section, i) => {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 75%"
+                    },
+                    duration: 0.8,
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.1,
+                    ease: "power1.out"
+                });
+            });
+        }
+
+        // 专门处理left-sidebar的表格动画
+        const leftSidebarTables = document.querySelectorAll('.tabbed-table');
+        if (leftSidebarTables.length > 0) {
+            gsap.from(leftSidebarTables, {
+                duration: 0.5,
+                opacity: 1, // 保持可见
+                y: 0,
+                ease: "power1.out"
+            });
+        }
     });
 
     // 文字惯性效果 - 优化版
@@ -232,8 +255,10 @@ $(document).ready(function() {
     }
 
     // Tabbed Table Functionality
-    function initTabbedTables() {
-        $('.tabbed-table').each(function() {
+function initTabbedTables() {
+    $('.tabbed-table').each(function() {
+        if ($(this).data('initialized')) return;
+        $(this).data('initialized', true);
             const $table = $(this);
             
             // Ensure only one active tab per table
@@ -251,16 +276,14 @@ $(document).ready(function() {
                 $table.find('.tab-pane').removeClass('active');
                 
                 // Show selected pane with GSAP animation
+                $(tabId).addClass('active').css('display', 'block');
                 gsap.fromTo($(tabId), 
                     { opacity: 0, y: 20 },
                     { 
                         opacity: 1, 
                         y: 0,
                         duration: 0.5,
-                        ease: "power2.out",
-                        onStart: function() {
-                            $(tabId).addClass('active');
-                        }
+                        ease: "power2.out"
                     }
                 );
                 

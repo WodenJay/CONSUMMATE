@@ -21,7 +21,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li class="tittle active"><a href="left-sidebar.html">排行榜</a></li>
+						<li class="tittle active"><a href="left-sidebar.html">测试结果</a></li>
 						<li class="break tittle"><a href="right-sidebar.html">测试</a></li>
 						<li class="tittle"><a href="no-sidebar.html"></a></li>
 					</ul>
@@ -34,253 +34,198 @@
 	<!-- Main Wrapper -->
 	<div id="main-wrapper">
 		<div class="container">
-			<!-- Tabbed Table -->
-			<div class="tabbed-table">
-				<ul class="tabs">
-					<li class="active"><a href="#tab1">多语言攻击</a></li>
-					<li><a href="#tab2">视觉问答</a></li>
-					<li><a href="#tab3">文本问答</a></li>
-				</ul>
+			<!-- Tables -->
+			<div class="table-wrapper">
+				<h3 class="table-title"><span class="highlight">多语言攻击</span></h3>
+				<table border="1">
+					<thead>
+						<tr>
+							<th>使用语言</th>
+							<th>评价指标</th>
+							<th>deepseek-chat</th>
+							<th>gemma-29B</th>
+							<th>gpt-4</th>
+							<th>Llava-34B</th>
+							<th>Llama32-90B</th>
+							<th>llama321B</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="3">Bengali</td>
+							<td>安全率</td>
+							<td>58.5%</td>
+							<td>81.5%</td>
+							<td>42.5%</td>
+							<td>3.0%</td>
+							<td>2.0%</td>
+							<td>49.0%</td>
+						</tr>
+						<tr>
+							<td>攻击成功率</td>
+							<td>28.0%</td>
+							<td>9.0%</td>
+							<td>33.0%</td>
+							<td>2.0%</td>
+							<td>10.5%</td>
+							<td>23.0%</td>
+						</tr>
+						<tr>
+							<td>回答无关率</td>
+							<td>13.5%</td>
+							<td>9.5%</td>
+							<td>24.5%</td>
+							<td>95.0%</td>
+							<td>87.5%</td>
+							<td>28.0%</td>
+						</tr>
+						<tr>
+							<td rowspan="3">Chinese</td>
+							<td>安全率</td>
+							<td>94.5%</td>
+							<td>93.0%</td>
+							<td>84.5%</td>
+							<td>82.0%</td>
+							<td>73.0%</td>
+							<td>93.5%</td>
+						</tr>
+						<tr>
+							<td>攻击成功率</td>
+							<td>4.5%</td>
+							<td>5.0%</td>
+							<td>14.0%</td>
+							<td>15.0%</td>
+							<td>20.5%</td>
+							<td>4.0%</td>
+						</tr>
+						<tr>
+							<td>回答无关率</td>
+							<td>1.0%</td>
+							<td>2.0%</td>
+							<td>1.5%</td>
+							<td>3.0%</td>
+							<td>6.5%</td>
+							<td>2.5%</td>
+						</tr>
+						<tr>
+							<td rowspan="3">English</td>
+							<td>安全率</td>
+							<td>90.5%</td>
+							<td>98.0%</td>
+							<td>93.5%</td>
+							<td>94.5%</td>
+							<td>95.5%</td>
+							<td>79.0%</td>
+						</tr>
+						<tr>
+							<td>攻击成功率</td>
+							<td>9.0%</td>
+							<td>2.0%</td>
+							<td>6.5%</td>
+							<td>5.0%</td>
+							<td>4.0%</td>
+							<td>20.5%</td>
+						</tr>
+						<tr>
+							<td>回答无关率</td>
+							<td>0.5%</td>
+							<td>0.0%</td>
+							<td>0.0%</td>
+							<td>0.5%</td>
+							<td>0.5%</td>
+							<td>0.5%</td>
+						</tr>
+						<tr>
+							<td rowspan="3">German</td>
+							<td>安全率</td>
+							<td>90.0%</td>
+							<td>96.5%</td>
+							<td>88.5%</td>
+							<td>83.5%</td>
+							<td>84.0%</td>
+							<td>95.5%</td>
+						</tr>
+						<tr>
+							<td>攻击成功率</td>
+							<td>9.5%</td>
+							<td>2.5%</td>
+							<td>10.5%</td>
+							<td>14.5%</td>
+							<td>12.0%</td>
+							<td>3.0%</td>
+						</tr>
+						<tr>
+							<td>回答无关率</td>
+							<td>0.5%</td>
+							<td>1.0%</td>
+							<td>1.0%</td>
+							<td>2.0%</td>
+							<td>4.0%</td>
+							<td>1.5%</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-				<div class="tab-content">
-					<div id="tab1" class="tab-pane active">
-						<div class="table-wrapper">
-							<table class="animated-table">
-								<thead>
-									<tr>
-										<th>指标</th>
-										<th>指标1</th>
-										<th>指标2</th>
-										<th>指标3</th>
-										<th>指标4</th>
-										<th>指标5</th>
-										<th>指标6</th>
-										<th>指标7</th>
-										<th>指标8</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th rowspan="3">属性1</th>
-										<td>数据1-1</td>
-										<td>数据1-2</td>
-										<td>数据1-3</td>
-										<td>数据1-4</td>
-										<td>数据1-5</td>
-										<td>数据1-6</td>
-										<td>数据1-7</td>
-										<td>数据1-8</td>
-									</tr>
-									<tr>
-										<td>数据2-1</td>
-										<td>数据2-2</td>
-										<td>数据2-3</td>
-										<td>数据2-4</td>
-										<td>数据2-5</td>
-										<td>数据2-6</td>
-										<td>数据2-7</td>
-										<td>数据2-8</td>
-									</tr>
-									<tr>
-										<td>数据3-1</td>
-										<td>数据3-2</td>
-										<td>数据3-3</td>
-										<td>数据3-4</td>
-										<td>数据3-5</td>
-										<td>数据3-6</td>
-										<td>数据3-7</td>
-										<td>数据3-8</td>
-									</tr>
+			<div class="table-wrapper">
+				<h3 class="table-title"><span class="highlight">视觉问答</span> 性能评估</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>模型</th>
+							<th>准确率</th>
+							<th>召回率</th>
+							<th>响应时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>模型C</td>
+							<td>85.2%</td>
+							<td>0.83</td>
+							<td>150ms</td>
+						</tr>
+						<tr>
+							<td>模型D</td>
+							<td>78.9%</td>
+							<td>0.76</td>
+							<td>110ms</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-									<tr>
-										<th rowspan="3">属性2</th>
-										<td>数据1-1</td>
-										<td>数据1-2</td>
-										<td>数据1-3</td>
-										<td>数据1-4</td>
-										<td>数据1-5</td>
-										<td>数据1-6</td>
-										<td>数据1-7</td>
-										<td>数据1-8</td>
-									</tr>
-									<tr>
-										<td>数据2-1</td>
-										<td>数据2-2</td>
-										<td>数据2-3</td>
-										<td>数据2-4</td>
-										<td>数据2-5</td>
-										<td>数据2-6</td>
-										<td>数据2-7</td>
-										<td>数据2-8</td>
-									</tr>
-									<tr>
-										<td>数据3-1</td>
-										<td>数据3-2</td>
-										<td>数据3-3</td>
-										<td>数据3-4</td>
-										<td>数据3-5</td>
-										<td>数据3-6</td>
-										<td>数据3-7</td>
-										<td>数据3-8</td>
-									</tr>
-
-									<tr>
-										<th rowspan="3">属性3</th>
-										<td>数据1-1</td>
-										<td>数据1-2</td>
-										<td>数据1-3</td>
-										<td>数据1-4</td>
-										<td>数据1-5</td>
-										<td>数据1-6</td>
-										<td>数据1-7</td>
-										<td>数据1-8</td>
-									</tr>
-									<tr>
-										<td>数据2-1</td>
-										<td>数据2-2</td>
-										<td>数据2-3</td>
-										<td>数据2-4</td>
-										<td>数据2-5</td>
-										<td>数据2-6</td>
-										<td>数据2-7</td>
-										<td>数据2-8</td>
-									</tr>
-									<tr>
-										<td>数据3-1</td>
-										<td>数据3-2</td>
-										<td>数据3-3</td>
-										<td>数据3-4</td>
-										<td>数据3-5</td>
-										<td>数据3-6</td>
-										<td>数据3-7</td>
-										<td>数据3-8</td>
-									</tr>
-
-									<tr>
-										<th rowspan="3">属性4</th>
-										<td>数据1-1</td>
-										<td>数据1-2</td>
-										<td>数据1-3</td>
-										<td>数据1-4</td>
-										<td>数据1-5</td>
-										<td>数据1-6</td>
-										<td>数据1-7</td>
-										<td>数据1-8</td>
-									</tr>
-									<tr>
-										<td>数据2-1</td>
-										<td>数据2-2</td>
-										<td>数据2-3</td>
-										<td>数据2-4</td>
-										<td>数据2-5</td>
-										<td>数据2-6</td>
-										<td>数据2-7</td>
-										<td>数据2-8</td>
-									</tr>
-									<tr>
-										<td>数据3-1</td>
-										<td>数据3-2</td>
-										<td>数据3-3</td>
-										<td>数据3-4</td>
-										<td>数据3-5</td>
-										<td>数据3-6</td>
-										<td>数据3-7</td>
-										<td>数据3-8</td>
-									</tr>
-
-									<tr>
-										<th rowspan="3">属性5</th>
-										<td>数据1-1</td>
-										<td>数据1-2</td>
-										<td>数据1-3</td>
-										<td>数据1-4</td>
-										<td>数据1-5</td>
-										<td>数据1-6</td>
-										<td>数据1-7</td>
-										<td>数据1-8</td>
-									</tr>
-									<tr>
-										<td>数据2-1</td>
-										<td>数据2-2</td>
-										<td>数据2-3</td>
-										<td>数据2-4</td>
-										<td>数据2-5</td>
-										<td>数据2-6</td>
-										<td>数据2-7</td>
-										<td>数据2-8</td>
-									</tr>
-									<tr>
-										<td>数据3-1</td>
-										<td>数据3-2</td>
-										<td>数据3-3</td>
-										<td>数据3-4</td>
-										<td>数据3-5</td>
-										<td>数据3-6</td>
-										<td>数据3-7</td>
-										<td>数据3-8</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-					<div id="tab2" class="tab-pane">
-						<div class="table-wrapper">
-							<table class="animated-table">
-								<thead>
-									<tr>
-										<th>指标</th>
-										<th>当前值</th>
-										<th>变化</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>访问量</td>
-										<td>1,245</td>
-										<td>↑12%</td>
-									</tr>
-									<tr>
-										<td>转化率</td>
-										<td>3.2%</td>
-										<td>↑0.5%</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-					<div id="tab3" class="tab-pane">
-						<div class="table-wrapper">
-							<table class="animated-table">
-								<thead>
-									<tr>
-										<th>日期</th>
-										<th>操作</th>
-										<th>状态</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>2025-05-01</td>
-										<td>更新</td>
-										<td>完成</td>
-									</tr>
-									<tr>
-										<td>2025-04-28</td>
-										<td>创建</td>
-										<td>完成</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+			<div class="table-wrapper">
+				<h3 class="table-title"><span class="highlight">文本问答</span> 性能评估</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>模型</th>
+							<th>BLEU分数</th>
+							<th>ROUGE-L</th>
+							<th>响应时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>模型E</td>
+							<td>0.45</td>
+							<td>0.52</td>
+							<td>200ms</td>
+						</tr>
+						<tr>
+							<td>模型F</td>
+							<td>0.38</td>
+							<td>0.44</td>
+							<td>180ms</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
 
-	<!--copyright-->
+	<!--Copyright-->
 	<div id="copyright" class="container">
 		<ul class="menu">
 			<li>&copy; CONSUMMATE. All rights reserved.</li>
