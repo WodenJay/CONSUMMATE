@@ -2821,18 +2821,85 @@ body.left-sidebar #header-wrapper {
 
 @media screen and (max-width: 1280px) {
 
-	/* Basic */
+/* Basic */
 
-	body,
-	input,
-	textarea,
-	select {
-		line-height: 1.5em;
-		font-size: 13pt;
+	body {
+		background: #fff;
+		color: #636363;
 	}
 
-	span.extra {
-		display: none;
+	body, input, select, textarea {
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-size: 16pt;
+		font-weight: 300;
+		line-height: 1.65;
+	}
+
+	/* Chat Styles */
+	.chat-container {
+		display: flex;
+		flex-direction: column;
+		height: 600px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+
+	.chat-header {
+		padding: 15px;
+		background: #f5f5f5;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.chat-messages {
+		flex: 1;
+		padding: 15px;
+		overflow-y: auto;
+		background: #fff;
+	}
+
+	.chat-input {
+		display: flex;
+		padding: 15px;
+		background: #f5f5f5;
+		border-top: 1px solid #ddd;
+	}
+
+	.chat-input textarea {
+		flex: 1;
+		padding: 10px;
+		border: 1px solid #ddd;
+		border-radius: 3px;
+		resize: none;
+	}
+
+	.chat-input button {
+		margin-left: 10px;
+	}
+
+	.message {
+		margin-bottom: 15px;
+		padding: 10px 15px;
+		border-radius: 5px;
+		max-width: 80%;
+	}
+
+	.message.user {
+		background: #e3f2fd;
+		margin-left: auto;
+	}
+
+	.message.bot {
+		background: #f1f1f1;
+		margin-right: auto;
+	}
+
+	.message.system {
+		background: #fff8e1;
+		margin: 10px auto;
+		text-align: center;
+		font-size: 0.9em;
+		color: #666;
 	}
 
 	/* Wrappers */

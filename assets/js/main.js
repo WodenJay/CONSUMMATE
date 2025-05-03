@@ -142,119 +142,138 @@ function initAnimations() {
 // Chat System Functionality
 $(document).ready(function() {
     initAnimations();
-    let currentMode = 'general';
-    const chatMessages = $('#chat-messages');
-    const userInput = $('#user-input');
-    const sendButton = $('#send-button');
-
-    // Handle mode selection
-    $('.mode-button').on('click', function(e) {
-        e.preventDefault();
-        currentMode = $(this).data('mode');
-        const modeName = $(this).text();
-        let promptMessage = `已切换到${modeName}方法`;
-        
-        // Add specific prompts for each mode
-        switch(currentMode) {
-            case 'general':
-                promptMessage += " - 标准对话模式";
-                break;
-            case 'creative':
-                promptMessage += " - 角色扮演模式";
-                break;
-            case 'technical':
-                promptMessage += " - 技术专家模式";
-                break;
-            case 'custom':
-                promptMessage += " - 自定义模式";
-                break;
-        }
-        
-        addSystemMessage(promptMessage);
-    });
-
-    // Handle send message
-    sendButton.on('click', function(e) {
-        e.preventDefault();
-        sendMessage();
-    });
+    initTabbedTables();
     
-    userInput.on('keypress', function(e) {
-        if (e.which === 13 && !e.shiftKey) {
+    if ($('#chat-messages').length) {
+        let currentMode = 'general';
+        const chatMessages = $('#chat-messages');
+        const userInput = $('#user-input');
+        const sendButton = $('#send-button');
+
+        // Handle mode selection
+        $('.mode-button').on('click', function(e) {
+            e.preventDefault();
+            currentMode = $(this).data('mode');
+            const modeName = $(this).text();
+            let promptMessage = `已切换到${modeName}方法`;
+            
+            // Add specific prompts for each mode
+            switch(currentMode) {
+                case 'general':
+                    promptMessage += " - 标准对话模式";
+                    break;
+                case 'creative':
+                    promptMessage += " - 角色扮演模式";
+                    break;
+                case 'technical':
+                    promptMessage += " - 技术专家模式";
+                    break;
+                case 'custom':
+                    promptMessage += " - 自定义模式";
+                    break;
+            }
+            
+            addSystemMessage(promptMessage);
+        });
+
+        // Handle send message
+        sendButton.on('click', function(e) {
             e.preventDefault();
             sendMessage();
-        }
-    });
-
-    function sendMessage() {
-        const message = userInput.val().trim();
-        if (message) {
-            addUserMessage(message);
-            userInput.val('');
-            
-            // Call Python backend API
-            callPythonAPI(currentMode, message)
-                .then(response => {
-                    addBotMessage(response);
-                })
-                .catch(error => {
-                    addSystemMessage('请求失败: ' + error);
-                });
-        }
-    }
-
-    function callPythonAPI(mode, message) {
-        return new Promise((resolve, reject) => {
-            // 根据模式选择对应的Python脚本
-            const apiUrl = `/api/${mode}`;
-            
-            $.ajax({
-                url: apiUrl,
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    message: message,
-                    timestamp: new Date().getTime()
-                }),
-                success: function(data) {
-                    if (data.success) {
-                        resolve(data.response);
-                    } else {
-                        reject(data.error || '未知错误');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    let errorMsg = '请求失败';
-                    if (xhr.responseJSON && xhr.responseJSON.error) {
-                        errorMsg = xhr.responseJSON.error;
-                    } else if (error) {
-                        errorMsg = error;
-                    }
-                    reject(errorMsg);
-                }
-            });
         });
-    }
+        
+        userInput.on('keypress', function(e) {
+            if (e.which === 13 && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
 
-    function addUserMessage(text) {
-        addMessage('user', text);
-    }
+        function sendMessage() {
+            const message = userInput.val().trim();
+            if (message) {
+                addUserMessage(message);
+                userInput.val('');
+                
+                // 显示用户消息后立即显示"正在思考..."提示
+                addSystemMessage('正在思考...');
+                
+                // Call Python backend API
+                callPythonAPI(currentMode, message)
+                    .then(response => {
+                        handleMessageResponse(response);
+                    })
+                    .catch(error => {
+                        handleMessageResponse({
+                            success: false,
+                            error: error
+                        });
+                    });
+            }
+        }
 
-    function addBotMessage(text) {
-        addMessage('bot', text);
-    }
+        function callPythonAPI(mode, message) {
+            return new Promise((resolve, reject) => {
+                const apiUrl = `/api/${mode}`;
+                
+                $.ajax({
+                    url: apiUrl,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        message: message,
+                        timestamp: new Date().getTime()
+                    }),
+                    success: function(data) {
+                        if (data.success) {
+                            resolve(data);
+                        } else {
+                            reject(data.error || '未知错误');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMsg = '还未接入API';
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMsg = xhr.responseJSON.error;
+                        } else if (error) {
+                            errorMsg = error;
+                        }
+                        reject(errorMsg);
+                    }
+                });
+            });
+        }
 
-    function addSystemMessage(text) {
-        addMessage('system', text);
-    }
+        function handleMessageResponse(response) {
+            chatMessages.find('.message.system').last().remove();
+            if (response.success) {
+                addBotMessage(response.response);
+            } else {
+                addSystemMessage('请求失败: ' + response.error);
+            }
+        }
 
-    function addMessage(type, text) {
-        const messageElement = $('<div class="message ' + type + '">' + text + '</div>');
-        chatMessages.append(messageElement);
-        chatMessages.scrollTop(chatMessages[0].scrollHeight);
-    }
+        function addUserMessage(text) {
+            addMessage('user', text);
+        }
 
-    // Tabbed Table Functionality
+        function addBotMessage(text) {
+            addMessage('bot', text);
+        }
+
+        function addSystemMessage(text) {
+            addMessage('system', text);
+        }
+
+        function addMessage(type, text) {
+            const messageElement = $('<div class="message ' + type + '">' + text + '</div>');
+            chatMessages.append(messageElement);
+            chatMessages.scrollTop(chatMessages[0].scrollHeight);
+        }
+    }
+});
+
+// Tabbed Table Functionality
 function initTabbedTables() {
     $('.tabbed-table').each(function() {
         if ($(this).data('initialized')) return;
@@ -301,7 +320,3 @@ function initTabbedTables() {
             $table.find('.tabs li:first-child a').trigger('click');
         });
     }
-
-    // Initialize all tabbed tables
-    initTabbedTables();
-});
