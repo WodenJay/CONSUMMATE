@@ -160,6 +160,122 @@ $(document).ready(function() {
             addSystemMessage(promptMessage);
         });
 
+        // Handle option selection with event delegation
+        $(document).on('click', '.sub-options .button', function(e) {
+            e.preventDefault();
+            console.log('Option clicked:', $(this).text()); // Debug log
+            
+            const optionText = $(this).text();
+            const mode = $(this).closest('.mode-list > li').find('.mode-button').attr('data-mode');
+            console.log('Current mode:', mode); // Debug log
+            
+            // Get question and answer based on mode and option
+            const content = getContentForOption(mode, optionText);
+            console.log('Retrieved content:', content); // Debug log
+            
+            if (content) {
+                // Add option and question to chat
+                addSystemMessage(`已选择: ${optionText}`);
+                addUserMessage(content.question);
+                
+                // Add answer after delay
+                setTimeout(() => {
+                    addBotMessage(content.answer);
+                }, 800);
+            } else {
+                addSystemMessage('获取内容失败');
+            }
+        });
+
+        function getContentForOption(mode, option) {
+            console.log('Getting content for:', mode, option); // Debug log
+            
+            // Define preset questions and answers for each mode
+            const responses = {
+                'text': {
+                    '选项1': {
+                        question: '这是文本测试模式选项1的预设问题内容',
+                        answer: '这是文本测试模式选项1的预设回答'
+                    },
+                    '选项2': {
+                        question: '这是文本测试模式选项2的预设问题内容',
+                        answer: '这是文本测试模式选项2的预设回答'
+                    },
+                    '选项3': {
+                        question: '这是文本测试模式选项3的预设问题内容',
+                        answer: '这是文本测试模式选项3的预设回答'
+                    }
+                },
+                'VQA': {
+                    '选项1': {
+                        question: '这是视觉问答测试模式选项1的预设问题内容',
+                        answer: '这是视觉问答测试模式选项1的预设回答'
+                    },
+                    '选项2': {
+                        question: '这是视觉问答测试模式选项2的预设问题内容',
+                        answer: '这是视觉问答测试模式选项2的预设回答'
+                    },
+                    '选项3': {
+                        question: '这是视觉问答测试模式选项3的预设问题内容',
+                        answer: '这是视觉问答测试模式选项3的预设回答'
+                    }
+                },
+                'language': {
+                    '选项1': {
+                        question: '这是多语言攻击模式选项1的预设问题内容',
+                        answer: '这是多语言攻击模式选项1的预设回答'
+                    },
+                    '选项2': {
+                        question: '这是多语言攻击模式选项2的预设问题内容',
+                        answer: '这是多语言攻击模式选项2的预设回答'
+                    },
+                    '选项3': {
+                        question: '这是多语言攻击模式选项3的预设问题内容',
+                        answer: '这是多语言攻击模式选项3的预设回答'
+                    }
+                },
+                'role': {
+                    '选项1': {
+                        question: '这是角色扮演攻击模式选项1的预设问题内容',
+                        answer: '这是角色扮演攻击模式选项1的预设回答'
+                    },
+                    '选项2': {
+                        question: '这是角色扮演攻击模式选项2的预设问题内容',
+                        answer: '这是角色扮演攻击模式选项2的预设回答'
+                    },
+                    '选项3': {
+                        question: '这是角色扮演攻击模式选项3的预设问题内容',
+                        answer: '这是角色扮演攻击模式选项3的预设回答'
+                    }
+                }
+            };
+
+            // Log all available modes and options for debugging
+            console.log('Available modes:', Object.keys(responses));
+            Object.keys(responses).forEach(m => {
+                console.log(`Options for ${m}:`, Object.keys(responses[m]));
+            });
+
+            // Trim and normalize option text for matching
+            const normalizedOption = option.trim();
+            
+            // Find matching option (case insensitive and allows partial match)
+            const matchedOption = Object.keys(responses[mode] || {}).find(
+                opt => opt.trim() === normalizedOption
+            );
+
+            if (!responses[mode] || !matchedOption) {
+                console.error(`Invalid mode or option: mode=${mode}, option=${option}`);
+                console.error('Available options:', responses[mode] ? Object.keys(responses[mode]) : 'N/A');
+                return {
+                    question: `无效的选项: ${option}`,
+                    answer: '请选择有效的测试选项'
+                };
+            }
+            
+            return responses[mode][matchedOption];
+        }
+
         // Handle send message
         sendButton.on('click', function(e) {
             e.preventDefault();

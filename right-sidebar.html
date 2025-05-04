@@ -48,10 +48,6 @@
 							<div class="chat-messages" id="chat-messages">
 								<!-- Messages will appear here -->
 							</div>
-							<div class="chat-input">
-								<textarea id="user-input" placeholder="输入消息..."></textarea>
-								<button id="send-button" class="button">发送</button>
-							</div>
 						</div>
 
 					</div>
@@ -63,11 +59,53 @@
 								<h3>测试内容</h3>
 							</header>
 							<ul class="mode-list">
-								<li><a href="#" class="button mode-button" data-mode="text">文本测试</a></li>
-								<li><a href="#" class="button mode-button" data-mode="VQA">视觉问答测试</a></li>
-								<li><a href="#" class="button mode-button" data-mode="language">多语言攻击</a></li>
-								<li><a href="#" class="button mode-button" data-mode="role">角色扮演攻击</a></li>
+								<li>
+									<a href="#" class="button mode-button" data-mode="text">文本测试</a>
+									<ul class="sub-options" style="display:none;">
+										<li><a href="#" class="button">选项1</a></li>
+										<li><a href="#" class="button">选项2</a></li>
+										<li><a href="#" class="button">选项3</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#" class="button mode-button" data-mode="VQA">视觉问答测试</a>
+									<ul class="sub-options" style="display:none;">
+										<li><a href="#" class="button">选项1</a></li>
+										<li><a href="#" class="button">选项2</a></li>
+										<li><a href="#" class="button">选项3</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#" class="button mode-button" data-mode="language">多语言攻击</a>
+									<ul class="sub-options" style="display:none;">
+										<li><a href="#" class="button">选项1</a></li>
+										<li><a href="#" class="button">选项2</a></li>
+										<li><a href="#" class="button">选项3</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#" class="button mode-button" data-mode="role">角色扮演攻击</a>
+									<ul class="sub-options" style="display:none;">
+										<li><a href="#" class="button">选项1</a></li>
+										<li><a href="#" class="button">选项2</a></li>
+										<li><a href="#" class="button">选项3</a></li>
+									</ul>
+								</li>
 							</ul>
+							<script>
+								document.querySelectorAll('.mode-button').forEach(button => {
+									button.addEventListener('click', function(e) {
+										e.preventDefault();
+										const mode = this.getAttribute('data-mode');
+										// 隐藏所有选项
+										document.querySelectorAll('.sub-options').forEach(el => {
+											el.style.display = 'none';
+										});
+										// 显示当前模式的选项
+										this.nextElementSibling.style.display = 'block';
+									});
+								});
+							</script>
 						</section>
 					</div>
 				</div>
