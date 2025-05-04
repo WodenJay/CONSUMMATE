@@ -1,2 +1,2 @@
-# CONSUMMATE:A website to test medical 
+# CONSUMMATE:A website to test medical LLM
 - not finish now, I will rewrite the README when I finish it......
