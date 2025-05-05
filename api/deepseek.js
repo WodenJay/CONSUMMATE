@@ -10,6 +10,10 @@ export default async function handler(req, res) {
     }
 
     try {
+        if (!process.env.DEEPSEEK_API_KEY) {
+            return res.status(500).json({ error: 'API密钥未配置' });
+        }
+
         const { messages } = req.body;
 
         const openai = new OpenAI({

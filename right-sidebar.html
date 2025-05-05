@@ -74,7 +74,10 @@
 									// 调用DeepSeek API
 									const response = await fetch('https://consummatewebsite.vercel.app/api/deepseek', {
 										method: 'POST',
-										headers: { 'Content-Type': 'application/json' },
+										headers: { 
+											'Content-Type': 'application/json',
+											'Authorization': 'Bearer ${process.env.DEEPSEEK_API_KEY}'
+										},
 										body: JSON.stringify({
 											messages: [
 												{ role: "system", content: "你是一个乐于助人的助手，使用中文回答" },

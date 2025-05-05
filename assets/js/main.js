@@ -393,51 +393,39 @@ I encourage you to focus on legal and safe alternatives. Let me know if you need
                 // 显示用户消息后立即显示"正在思考..."提示
                 addSystemMessage('正在思考...');
 
-                // Call Python backend API
-                callPythonAPI(currentMode, message)
-                    .then(response => {
-                        handleMessageResponse(response);
+                // Call DeepSeek API endpoint
+                fetch('https://consummatewebsite.vercel.app/api/deepseek', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ${process.env.DEEPSEEK_API_KEY}'
+                    },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: "system", content: "你是一个乐于助人的助手，使用中文回答" },
+                            { role: "user", content: message }
+                        ]
                     })
-                    .catch(error => {
-                        handleMessageResponse({
-                            success: false,
-                            error: error
-                        });
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    handleMessageResponse({
+                        success: true,
+                        response: data.response
                     });
+                })
+                .catch(error => {
+                    handleMessageResponse({
+                        success: false,
+                        error: error.message
+                    });
+                });
             }
         }
 
-        function callPythonAPI(mode, message) {
-            return new Promise((resolve, reject) => {
-                const apiUrl = `/api/${mode}`;
-
-                $.ajax({
-                    url: apiUrl,
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                        message: message,
-                        timestamp: new Date().getTime()
-                    }),
-                    success: function (data) {
-                        if (data.success) {
-                            resolve(data);
-                        } else {
-                            reject(data.error || '未知错误');
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        let errorMsg = '还未接入API';
-                        if (xhr.responseJSON && xhr.responseJSON.error) {
-                            errorMsg = xhr.responseJSON.error;
-                        } else if (error) {
-                            errorMsg = error;
-                        }
-                        reject(errorMsg);
-                    }
-                });
-            });
-        }
 
         function handleMessageResponse(response) {
             chatMessages.find('.message.system').last().remove();
