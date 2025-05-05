@@ -24,7 +24,8 @@ export default async function handler(req, res) {
         const completion = await openai.chat.completions.create({
             model: "deepseek-chat",
             messages: messages,
-            temperature: 0.7
+            temperature: 0.7,
+            max_tokens: 50
         });
 
         return res.status(200).json({
