@@ -51,7 +51,60 @@
 							<div class="chat-messages" id="chat-messages" style="white-space: pre-line;">
 								<!-- Messages will appear here -->
 							</div>
+							<div class="chat-input">
+								<textarea id="user-input" placeholder="输入您的问题..."></textarea>
+								<button id="send-button">发送</button>
+							</div>
 						</div>
+						<script>
+							document.getElementById('send-button').addEventListener('click', async () => {
+								const userInput = document.getElementById('user-input').value;
+								if (!userInput.trim()) return;
+
+								// 显示用户消息
+								const userMsg = document.createElement('div');
+								userMsg.className = 'message user';
+								userMsg.textContent = userInput;
+								document.getElementById('chat-messages').appendChild(userMsg);
+
+								// 清空输入框
+								document.getElementById('user-input').value = '';
+
+								try {
+									// 调用DeepSeek API
+									const response = await fetch('https://consummatewebsite.vercel.app/api/deepseek', {
+										method: 'POST',
+										headers: { 'Content-Type': 'application/json' },
+										body: JSON.stringify({
+											messages: [
+												{ role: "system", content: "你是一个乐于助人的助手，使用中文回答" },
+												{ role: "user", content: userInput }
+											]
+										})
+									});
+
+									if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+									const data = await response.json();
+
+									// 显示AI回复
+									const botMsg = document.createElement('div');
+									botMsg.className = 'message bot';
+									botMsg.textContent = data.response;
+									document.getElementById('chat-messages').appendChild(botMsg);
+
+								} catch (error) {
+									console.error('Error:', error);
+									const errorMsg = document.createElement('div');
+									errorMsg.className = 'message system';
+									errorMsg.textContent = `请求失败: ${error.message}`;
+									document.getElementById('chat-messages').appendChild(errorMsg);
+								}
+
+								// 滚动到底部
+								document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+							});
+						</script>
 
 					</div>
 					<div class="col-4 col-12-narrower">
@@ -205,11 +258,10 @@
 									<div class="col-12">
 										<ul class="actions">
 											<li>
-												<input type="submit" value="提交" class="primary" 
-													style="font-size: 1.2em; padding: 0.6em 1.2em; border-radius: 6px;
+												<input type="submit" value="提交" class="primary" style="font-size: 1.2em; padding: 0.6em 1.2em; border-radius: 6px;
 													background: linear-gradient(135deg, #8fbaff, #6a5acd);
 													box-shadow: 0 4px 10px rgba(77, 139, 240, 0.3);
-													border: none; cursor: pointer;"/>
+													border: none; cursor: pointer;" />
 											</li>
 										</ul>
 									</div>

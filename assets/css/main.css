@@ -377,6 +377,113 @@ header.major {
 
 }
 
+/* Chat Interface Styles */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-header {
+    padding: 1.5em;
+    background: #f5f7fa;
+    border-bottom: 1px solid #d2d7dc;
+    text-align: center;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1.5em;
+    overflow-y: auto;
+    background: #f9fbfe;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f5f7fa;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #c2c7cc;
+    border-radius: 4px;
+}
+
+.message {
+    margin-bottom: 1em;
+    padding: 0.8em 1.2em;
+    border-radius: 18px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.message.user {
+    background: #e3f2fd;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+}
+
+.message.bot {
+    background: #f1f1f1;
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+}
+
+.message.system {
+    background: #f8f4e5;
+    color: #8a6d3b;
+    margin: 1em auto;
+    text-align: center;
+    border-radius: 4px;
+    border-left: 4px solid #f0ad4e;
+}
+
+.chat-input {
+    display: flex;
+    padding: 1em;
+    background: #fff;
+    border-top: 1px solid #d2d7dc;
+}
+
+.chat-input textarea {
+    flex: 1;
+    padding: 0.8em;
+    border: 1px solid #d2d7dc;
+    border-radius: 4px;
+    resize: none;
+    margin-right: 0.5em;
+    font-family: inherit;
+}
+
+.chat-input button {
+    padding: 0 1.5em;
+    background: #f35858;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chat-input button:hover {
+    background: #f56a6a;
+}
+
+.chat-input button:active {
+    background: #f04646;
+}
+
 @media screen and (max-width: 480px) {
 
 	.container {
