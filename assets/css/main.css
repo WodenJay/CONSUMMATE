@@ -379,109 +379,109 @@ header.major {
 
 /* Chat Interface Styles */
 .chat-container {
-    display: flex;
-    flex-direction: column;
-    height: 500px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	height: 500px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
 }
 
 .chat-header {
-    padding: 1.5em;
-    background: #f5f7fa;
-    border-bottom: 1px solid #d2d7dc;
-    text-align: center;
+	padding: 1.5em;
+	background: #f5f7fa;
+	border-bottom: 1px solid #d2d7dc;
+	text-align: center;
 }
 
 .chat-messages {
-    flex: 1;
-    padding: 1.5em;
-    overflow-y: auto;
-    background: #f9fbfe;
+	flex: 1;
+	padding: 1.5em;
+	overflow-y: auto;
+	background: #f9fbfe;
 }
 
 .chat-messages::-webkit-scrollbar {
-    width: 8px;
+	width: 8px;
 }
 
 .chat-messages::-webkit-scrollbar-track {
-    background: #f5f7fa;
+	background: #f5f7fa;
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
-    background: #c2c7cc;
-    border-radius: 4px;
+	background: #c2c7cc;
+	border-radius: 4px;
 }
 
 .message {
-    margin-bottom: 1em;
-    padding: 0.8em 1.2em;
-    border-radius: 18px;
-    max-width: 80%;
-    word-wrap: break-word;
-    line-height: 1.4;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeIn 0.3s ease-out forwards;
+	margin-bottom: 1em;
+	padding: 0.8em 1.2em;
+	border-radius: 18px;
+	max-width: 80%;
+	word-wrap: break-word;
+	line-height: 1.4;
+	opacity: 0;
+	transform: translateY(10px);
+	animation: fadeIn 0.3s ease-out forwards;
 }
 
 .message.user {
-    background: #e3f2fd;
-    margin-left: auto;
-    border-bottom-right-radius: 4px;
+	background: #e3f2fd;
+	margin-left: auto;
+	border-bottom-right-radius: 4px;
 }
 
 .message.bot {
-    background: #f1f1f1;
-    margin-right: auto;
-    border-bottom-left-radius: 4px;
+	background: #f1f1f1;
+	margin-right: auto;
+	border-bottom-left-radius: 4px;
 }
 
 .message.system {
-    background: #f8f4e5;
-    color: #8a6d3b;
-    margin: 1em auto;
-    text-align: center;
-    border-radius: 4px;
-    border-left: 4px solid #f0ad4e;
+	background: #f8f4e5;
+	color: #8a6d3b;
+	margin: 1em auto;
+	text-align: center;
+	border-radius: 4px;
+	border-left: 4px solid #f0ad4e;
 }
 
 .chat-input {
-    display: flex;
-    padding: 1em;
-    background: #fff;
-    border-top: 1px solid #d2d7dc;
+	display: flex;
+	padding: 1em;
+	background: #fff;
+	border-top: 1px solid #d2d7dc;
 }
 
 .chat-input textarea {
-    flex: 1;
-    padding: 0.8em;
-    border: 1px solid #d2d7dc;
-    border-radius: 4px;
-    resize: none;
-    margin-right: 0.5em;
-    font-family: inherit;
+	flex: 1;
+	padding: 0.8em;
+	border: 1px solid #d2d7dc;
+	border-radius: 4px;
+	resize: none;
+	margin-right: 0.5em;
+	font-family: inherit;
 }
 
 .chat-input button {
-    padding: 0 1.5em;
-    background: #f35858;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
+	padding: 0 1.5em;
+	background: #f35858;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .chat-input button:hover {
-    background: #f56a6a;
+	background: #f56a6a;
 }
 
 .chat-input button:active {
-    background: #f04646;
+	background: #f04646;
 }
 
 @media screen and (max-width: 480px) {
@@ -2204,13 +2204,13 @@ table tbody tr {
 
 /* 主阴影效果 */
 table tbody tr[rowspan] {
-	box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 	background-color: rgba(240, 240, 255, 0.1);
 }
 
 /* 相邻rowspan行的次级阴影 */
-table tbody tr:not([rowspan]) + tr[rowspan] {
-	box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+table tbody tr:not([rowspan])+tr[rowspan] {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 	background-color: rgba(255, 240, 240, 0.1);
 }
 
@@ -2234,7 +2234,7 @@ table th {
 	padding: 0.75em;
 	position: sticky;
 	top: 0;
-	box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
 /* 为rowspan行添加交替阴影效果 */
@@ -2394,7 +2394,7 @@ table.alt tfoot {
 	left: 0;
 	background: #f5f7fa;
 	z-index: 2;
-	box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .animated-table thead th {
@@ -2409,8 +2409,15 @@ table.alt tfoot {
 }
 
 @keyframes tableIn {
-	from { opacity: 0; transform: scale(0.95) translateY(20px); }
-	to { opacity: 1; transform: scale(1) translateY(0); }
+	from {
+		opacity: 0;
+		transform: scale(0.95) translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
 }
 
 .animated-table tbody tr {
@@ -2481,8 +2488,15 @@ table.alt tfoot {
 
 /* Table Animations */
 @keyframes fadeIn {
-	from { opacity: 0; transform: translateY(10px); }
-	to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 table {
@@ -2491,8 +2505,15 @@ table {
 }
 
 @keyframes tableIn {
-	from { opacity: 0; transform: scale(0.95) translateY(20px); }
-	to { opacity: 1; transform: scale(1) translateY(0); }
+	from {
+		opacity: 0;
+		transform: scale(0.95) translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
 }
 
 table tbody tr {
@@ -2621,7 +2642,7 @@ body.left-sidebar #header-wrapper {
 	padding: 10em 0 6em 0;
 	min-height: 800px;
 	background-size: 100% 1000%;
-	background-size: 128px 128px, 100% 1000%, auto;
+	background-size: 128px 128px, 100% 100%, auto;
 }
 
 #promo-wrapper {
@@ -3003,14 +3024,17 @@ body.left-sidebar #header-wrapper {
 
 @media screen and (max-width: 1280px) {
 
-/* Basic */
+	/* Basic */
 
 	body {
 		background: #fff;
 		color: #636363;
 	}
 
-	body, input, select, textarea {
+	body,
+	input,
+	select,
+	textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 300;
