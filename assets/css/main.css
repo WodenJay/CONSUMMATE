@@ -2158,7 +2158,7 @@ form textarea:focus {
 }
 
 form textarea {
-	min-height: 7em;
+	min-height: 3em;
 }
 
 form ::-webkit-input-placeholder {
@@ -3913,6 +3913,7 @@ section {
 	border-radius: 4px;
 	resize: none;
 	margin-right: 0.5em;
+	height: 3.5em;
 }
 
 .chat-input button {
