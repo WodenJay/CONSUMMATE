@@ -328,6 +328,17 @@ $(document).ready(function () {
         const chatMessages = $('#chat-messages');
         const userInput = $('#user-input');
         const sendButton = $('#send-button');
+        
+        // 添加MutationObserver监听聊天消息变化
+        const observer = new MutationObserver(function(mutations) {
+            chatMessages.stop().animate({
+                scrollTop: chatMessages[0].scrollHeight
+            }, 500);
+        });
+        observer.observe(chatMessages[0], {
+            childList: true,
+            subtree: true
+        });
 
         // Handle mode selection
         $('.mode-button').on('click', function (e) {
@@ -445,7 +456,10 @@ $(document).ready(function () {
                 messageElement.text(text);
             }
             chatMessages.append(messageElement);
-            chatMessages.scrollTop(chatMessages[0].scrollHeight);
+            // 平滑滚动到底部
+            chatMessages.stop().animate({
+                scrollTop: chatMessages[0].scrollHeight
+            }, 500);
         }
     }
 });
